@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Logo from '../../img/logo.png';
+
 import { Burger } from './Burger';
 
 const Nav = styled.nav`
@@ -20,8 +22,8 @@ export const Navbar = () => {
     return (
         <div>
             <Nav>
-            <div className="logo">
-                
+            <div>
+            <img className="logo" src={Logo} alt="logo" />  
             </div>
             <Burger/>            
             </Nav>

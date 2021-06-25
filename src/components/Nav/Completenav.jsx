@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+
+
+import Popup from '../hooks/Seacrh'
 
 const Ul = styled.ul`
 
@@ -9,6 +12,7 @@ const Ul = styled.ul`
     
     li{
         padding: 18px 10px;
+        cursor:pointer; 
     }
 
     @media (max-width: 768px) {        
@@ -20,17 +24,24 @@ const Ul = styled.ul`
         right: 0;
         height: 100vh;
         width: 300px;
-        padding-top: 3.5rem;
-        
-        
+        padding-top: 3.5rem;        
 
         li{
             color: #fff;
             text-align: center;
+            
         }
     }
 `
+
+
 export const Completenav = ({open}) => {
+
+    const [visible, setVisible] = useState(false)
+
+    const togglePopup = () =>{
+        setVisible(!visible);
+    }
     return (
         <div>
               <Ul open={open}>
@@ -39,7 +50,23 @@ export const Completenav = ({open}) => {
                 <li>Web</li>
                 <li>Photography</li>
                 <li>App</li>
-                <li class="bi bi-search">Search</li>
+                <li>
+                                                                     
+                    <input                         
+                        className="btn btn-primary"
+                        type ="button"                       
+                        value="search"
+                        onClick={togglePopup} 
+                    />
+                    <i class="bi bi-search"></i>
+                    {visible && < Popup
+                        content={<>
+                            <input placeholder="search"/>
+                        </>}
+                        handleClose={togglePopup}/>
+                    }
+                                        
+                </li>
             </Ul>
         </div>
     )

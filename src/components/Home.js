@@ -33,7 +33,7 @@ export const Home = () => {
         <Images />
       </div>
 
-      <button className="footer-btn">Show Me More</button>
+      
 
 
     </>

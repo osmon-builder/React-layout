@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { RViewerTrigger, RViewer} from 'react-viewerjs';
 
 let imgs = [
@@ -21,10 +21,16 @@ let imgs = [
   ];
 
 export const Images = () => {
+
+  const [unhide, setUnhide] = useState(4)
+
+  const showMoreImgs = () =>{
+      setUnhide((preValue) => preValue + 4);
+  }
     return (
         <div>
             <RViewer  imagesUrls= {imgs} >
-        {imgs.map((imagen, index) =>{
+        {imgs.slice(0,unhide).map((imagen, index) =>{
           return(
             <RViewerTrigger className="card" index = {index} >
               <img src = {imagen.default} alt="Photos"/>
@@ -32,6 +38,12 @@ export const Images = () => {
           )
         })}
       </RViewer>
+      <div>
+      <button  className="footer-btn"
+               onClick={showMoreImgs}>
+               Show Me More
+      </button>
+      </div>
         </div>
     )
 }
